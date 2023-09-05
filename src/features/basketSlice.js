@@ -18,9 +18,21 @@ const basketSlice = createSlice({
             const item = state.products.find(item => item.name === payload.name);
             item.amount--
         },
-        
+        removeItem: (state,{payload})=>{
+            state.products = state.products.filter(item => item.name !== payload.name)
+        },
+        updateTotal :(state) =>{
+            let amount = 0;
+            let total = 0;
+            state.products.forEach(item =>{
+                amount += item.amount;
+                total += item.amount * item.price;
+            });
+            state.amount = amount;
+            state.total = total;
+        }
     }
    
 })
-export const {increaseAmount,decreseAmount} = basketSlice.actions;
+export const {increaseAmount,decreseAmount,removeItem,updateTotal} = basketSlice.actions;
 export default basketSlice.reducer;
