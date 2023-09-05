@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import Product from './Product';
 
 const BasketProduct = () => {
-  const { products } = useSelector((store) => store.basket);
+  const { products,total } = useSelector((store) => store.basket);
 
   return (
     <div>
@@ -17,7 +17,11 @@ const BasketProduct = () => {
        amount={item.amount}
       />
       )}
-    </div>    
+    </div>
+    <div className='flex flex-row items-center justify-evenly py-8'>
+      <p className='text-2xl font-medium'>Total</p>
+      <p className='text-2xl font-medium'>$ {total}</p>
+      </div>    
     </div>
   );
 };
